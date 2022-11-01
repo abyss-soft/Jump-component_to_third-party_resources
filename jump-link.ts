@@ -61,8 +61,8 @@ export default defineComponent({
         if (isRelativeLink) {
           const origin = process.env.CPC_PREFIX || window.location.origin;
           const { to, position } = props;
-          const session = store.state.analytics.session.id;
-          const pageView = store.state.analytics.pageviewId;
+          const session = store.state?.analytics?.session.id;
+          const pageView = store.state?.analytics?.pageviewId;
           const type = props.blockType;
           const wd = navigator?.webdriver ? 1 : 0;
           jumpLink.value.href = `${origin}${to}&slot=${position}&session_id=${session}&pageview_id=${pageView}&block=${type}&wd=${wd}`;
@@ -91,7 +91,7 @@ export default defineComponent({
     const toLink = async (event?: MouseEvent, isAuxClick?: boolean) => {
       const { offer } = props;
       if (offer) {
-        if (store.state.useCPO && offer.cpo) {
+        if (store.state?.useCPO && offer?.cpo) {
           event?.preventDefault();
           if (isAuxClick) {
             window.open(
@@ -101,7 +101,7 @@ export default defineComponent({
             router?.push({
               path: '/checkout',
               query: {
-                offer_id: String(offer.id),
+                offer_id: String(offer?.id),
               },
             });
           }
